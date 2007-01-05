@@ -1,8 +1,15 @@
 YamlWaml
 ========
 
-YAML WorkAround for Multibyte Languate plugin.
+YamlWaml is for 'YAML WorkAround for Multibyte Language'.
 
-this plugin originated by the blog entry written by id:Rommy(*).
+This Rails plugin originated by the blog entry written by id:Rommy(*).
 
 (*) http://d.hatena.ne.jp/Rommy/20061229/1167406811
+
+Svn repository:
+  http://yaml-waml.googlecode.com/svn/trunk/yaml_waml/trunk/
+
+License:
+  TBD
+

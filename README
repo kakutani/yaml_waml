@@ -2,7 +2,7 @@
 
 YamlWaml is for 'YAML WorkAround for Multibyte Language'.
 
-This Rails plugin originated by the blog entry written by id:Rommy(*).
+This Rails plugin originated by the blog entry written by Akira Ikeda.
 
 (*) http://d.hatena.ne.jp/Rommy/20061229/1167406811
 
@@ -28,7 +28,7 @@ must install the following gems:
 
 == Authors
 
-Rommy, http://d.hatena.ne.jp/Rommy
+Akira Ikeda(pinpon.ikeda@gmail.com), http://d.hatena.ne.jp/Rommy
 
 Adapted by KAKUTANI Shintaro(shintaro@kakutani.com), http://kakutani.com
 

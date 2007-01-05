@@ -1,15 +1,21 @@
+require 'rubygems'
+require_gem 'rspec'
 require 'rake'
-require 'rake/testtask'
 require 'rake/rdoctask'
+require 'spec/rake/spectask'
+require 'spec/rake/verify_rcov'
 
 desc 'Default: run unit tests.'
-task :default => :test
+task :default => :spec
 
-desc 'Test the yaml_waml plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+task :pre_commit => [:spec, 'coverage:verify']
+
+desc 'Run all specs under spec/**/*_spec.rb'
+Spec::Rake::SpecTask.new(:spec => 'coverage:clean') do |t|
+  t.spec_files = FileList['spec/**/*_spec.rb']
+  t.spec_opts = ["-c", "--diff"]
+  t.rcov = true
+  t.rcov_opts = ["-x", "#{ENV['GEM_HOME']},spec\/"]
 end
 
 desc 'Generate documentation for the yaml_waml plugin.'
@@ -20,3 +26,15 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+namespace :coverage do
+  desc "Delete aggregate coverage data."
+  task(:clean) { rm_f "coverage" }
+
+  desc "verify coverage threshold via RCov"
+  RCov::VerifyTask.new(:verify => :spec) do |t|
+    t.threshold = 100.0 # Make sure you have rcov 0.7 or higher!
+    t.index_html = 'coverage/index.html'
+  end
+end
+

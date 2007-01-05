@@ -1,5 +1,4 @@
-YamlWaml
-========
+= YamlWaml
 
 YamlWaml is for 'YAML WorkAround for Multibyte Language'.
 
@@ -7,9 +6,29 @@ This Rails plugin originated by the blog entry written by id:Rommy(*).
 
 (*) http://d.hatena.ne.jp/Rommy/20061229/1167406811
 
-Svn repository:
-  http://yaml-waml.googlecode.com/svn/trunk/yaml_waml/trunk/
+== SVN repository
 
-License:
-  TBD
+* http://yaml-waml.googlecode.com/svn/trunk/yaml_waml/trunk/
+
+== License
+
+TBD
+
+== Running the specs
+
+In order to run YamlWaml's full suite of specs (rake pre_commit) you
+must install the following gems:
+
+* rake          # Runs the build script
+* rcov          # Verifies that the code is 100% covered by specs
+
+== Web Site
+
+* http://yaml-waml.googlecode.com/
+
+== Authors
+
+Rommy, http://d.hatena.ne.jp/Rommy
+
+Adapted by KAKUTANI Shintaro(shintaro@kakutani.com), http://kakutani.com
 

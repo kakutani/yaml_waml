@@ -6,8 +6,8 @@ class String
   end
 end
 
-ObjectSpace.each_object(Class){|klass|
-  klass.class_eval{
+ObjectSpace.each_object(Class) do |klass|
+  klass.class_eval do
     if method_defined?(:to_yaml) && !method_defined?(:to_yaml_with_decode)
       def to_yaml_with_decode(*args)
         result = to_yaml_without_decode(*args)
@@ -22,5 +22,5 @@ ObjectSpace.each_object(Class){|klass|
       alias_method :to_yaml_without_decode, :to_yaml
       alias_method :to_yaml, :to_yaml_with_decode
     end
-  }
-}
+  end
+end

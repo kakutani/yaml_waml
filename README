@@ -8,9 +8,21 @@ This Rails plugin originated by the blog entry written by Akira Ikeda.
 
 == Install
 
+=== 2.1.0 <= rails
+
+* script/plugin install git://github.com/kakutani/yaml_waml.git
+
+=== rails <= 2.0.2
+
 * script/plugin install http://yaml-waml.googlecode.com/svn/plugins/yaml_waml
 
-== SVN repository
+== Repositories
+
+== Git
+
+* git://github.com/kakutani/yaml_waml.git
+
+== SVN repository (obsoleted)
 
 * http://yaml-waml.googlecode.com/svn/plugins/yaml_waml
 

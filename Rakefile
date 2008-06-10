@@ -1,5 +1,5 @@
 require 'rubygems'
-require_gem 'rspec'
+gem 'rspec', '>= 1.1.4'
 require 'rake'
 require 'rake/rdoctask'
 require 'spec/rake/spectask'
@@ -15,7 +15,7 @@ Spec::Rake::SpecTask.new(:spec => 'coverage:clean') do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
   t.spec_opts = ["-c", "--diff"]
   t.rcov = true
-  t.rcov_opts = ["-x", "#{ENV['GEM_HOME']},spec\/"]
+  t.rcov_opts = ["--include-file", "lib\/*\.rb", "--exclude", "spec\/"]
 end
 
 desc 'Generate documentation for the yaml_waml plugin.'
@@ -37,4 +37,3 @@ namespace :coverage do
     t.index_html = 'coverage/index.html'
   end
 end
-

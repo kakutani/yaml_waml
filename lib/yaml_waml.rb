@@ -15,6 +15,13 @@ ObjectSpace.each_object(Class) do |klass|
           # decode for workaround
           result.gsub(/\\x(\w{2})/){
             [Regexp.last_match.captures.first.to_i(16)].pack("C")}
+        elsif result.kind_of? StringIO
+          str = result.string
+          str.gsub!(/\\x(\w{2})/){
+            [Regexp.last_match.captures.first.to_i(16)].pack("C")}
+          result.rewind
+          result.write str
+          result
         else
           result
         end

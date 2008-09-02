@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name     = "yaml_waml"
   s.version  = "0.1.2"
-  s.date     = "2008-09-02"
+  s.date     = "2008-09-02 12:14:00"
   s.summary  = "'to_yaml' workaround for multibyte UTF-8 string."
   s.email    = "shintaro@kakutani.com"
   s.homepage = "http://github.com/kakutani/yaml_waml/"

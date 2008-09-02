@@ -1,32 +1,33 @@
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__) + "/spec_helper"
 BLANK = " "
-context "Japanese text" do
-  specify "String should output string" do
-    "あ".to_yaml.should == <<-EXPECTED
+describe YAML, "#to_yaml" do
+  describe "Japanese text" do
+    it "String should output string" do
+      "あ".to_yaml.should == <<-EXPECTED
 --- "あ"
     EXPECTED
-  end
+    end
 
-  specify "Array-ed string should output string" do
-    ['あ','い'].to_yaml.should == <<-EXPECTED
+    it "Array-ed string should output string" do
+      ['あ','い'].to_yaml.should == <<-EXPECTED
 ---#{BLANK}
 - "あ"
 - "い"
     EXPECTED
-  end
+    end
 
-  specify "Hash-ed string should output string" do
-    {'日本語' => ['出力']}.to_yaml.should == <<-EXPECTED
+    it "Hash-ed string should output string" do
+      {'日本語' => ['出力']}.to_yaml.should == <<-EXPECTED
 ---#{BLANK}
 "日本語":#{BLANK}
 - "出力"
     EXPECTED
-  end
+    end
 
-  specify "mixed Array should output string" do
-    actual = [["あ", "い"], {"う" => ["え"]}, Struct.new(:name).new("お")]
-    actual.to_yaml.should == <<-EXPECTED
+    it "mixed Array should output string" do
+      actual = [["あ", "い"], {"う" => ["え"]}, Struct.new(:name).new("お")]
+      actual.to_yaml.should == <<-EXPECTED
 ---#{BLANK}
 - - "あ"
   - "い"
@@ -35,5 +36,16 @@ context "Japanese text" do
 - !ruby/struct:#{BLANK}
   name: "お"
     EXPECTED
+    end
+  end
+end
+
+describe YAML, ".dump" do
+  describe "w/ Japanese text" do
+    it "should output yaml string" do
+      YAML.dump("あ").should == <<-EXPECTED
+--- "あ"
+      EXPECTED
+    end
   end
 end

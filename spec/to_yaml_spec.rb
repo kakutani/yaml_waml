@@ -48,4 +48,19 @@ describe YAML, ".dump" do
       EXPECTED
     end
   end
+
+  specify "YAML.dump should be StringIO-friendly" do
+    actual = [["あ", "い"], {"う" => ["え"]}, Struct.new(:name).new("お")]
+    io = StringIO.new
+    YAML.dump(actual, io)
+    io.string.should be_eql <<-EXPECTED
+--- 
+- - "あ"
+  - "い"
+- "う": 
+  - "え"
+- !ruby/struct: 
+  name: "お"
+    EXPECTED
+  end
 end

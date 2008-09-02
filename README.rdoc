@@ -13,6 +13,13 @@ This Rails plugin originated by the blog entry written by Akira Ikeda.
  gem sources -a http://gems.github.com
  gem install kakutani-yaml_waml
 
+in ruby code ...
+
+ require 'rubygems'
+ gem 'kakutani-yaml_waml'
+ ...
+ require 'yaml_waml'
+
 === 2.1.0 <= rails w/ gem dependencies
 
  Rails::Initializer.run do |config|

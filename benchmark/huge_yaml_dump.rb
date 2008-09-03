@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'benchmark'
 require 'yaml'
 
@@ -20,6 +21,12 @@ Benchmark.bm do |x|
   x.report('using $1') {
     yaml_str.gsub(/\\x(\w{2})/) {
       [ $1.to_i(16) ].pack("C")
+    }
+  }
+
+  x.report('using $1 w/ H2') {
+    yaml_str.gsub(/\\x(\w{2})/){
+      [$1].pack("H2")
     }
   }
 
@@ -61,11 +68,12 @@ Benchmark.bm do |x|
 
 end
 
-# result on my environment( MacBook1.1 Intel Core Duo 1.83 GHz, 2GB), result is like that
+# result on my environment( MacBook Pro Intel Core Duo 2.5 GHz, 4GB), result is like that
 #                         user     system      total        real
-# original yaml_waml    2.610000   0.020000   2.630000 (  2.719135)
-# using $1              2.090000   0.030000   2.120000 (  2.173170)
-# with memoize          1.080000   0.010000   1.090000 (  1.135563)
-# with memoize and $1   1.110000   0.020000   1.130000 (  1.231589)
-# with symbol table     1.090000   0.010000   1.100000 (  1.129839)
-# packing  multi chars  0.970000   0.010000   0.980000 (  1.019086)
+# original yaml_waml     1.700000   0.030000   1.730000 (  2.460140)
+# using $1               1.430000   0.020000   1.450000 (  2.030178)
+# using $1 w/ H2         1.160000   0.010000   1.170000 (  1.476650)
+# with memoize           0.770000   0.010000   0.780000 (  0.972146)
+# with memoize and $1    0.780000   0.010000   0.790000 (  0.973506)
+# with symbol table      0.770000   0.010000   0.780000 (  1.102112)
+# packing  multi chars   0.740000   0.010000   0.750000 (  0.908722)

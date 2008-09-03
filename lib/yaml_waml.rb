@@ -10,17 +10,17 @@ ObjectSpace.each_object(Class) do |klass|
   klass.class_eval do
     if method_defined?(:to_yaml) && !method_defined?(:to_yaml_with_decode)
       def to_yaml_with_decode(*args)
-        result = to_yaml_without_decode(*args)
-        str = case result
+        orig_yamled = to_yaml_without_decode(*args)
+        yamled_str = case orig_yamled
               when String
-                result
+                orig_yamled
               when StringIO
-                result.string
+                orig_yamled.string
               else
-                return result
+                return orig_yamled
               end
-        str.gsub!(/\\x(\w{2})/){[$1].pack("H2")}
-        return result
+        yamled_str.gsub!(/\\x(\w{2})/){[$1].pack("H2")}
+        return yamled_str
       end
       alias_method :to_yaml_without_decode, :to_yaml
       alias_method :to_yaml, :to_yaml_with_decode

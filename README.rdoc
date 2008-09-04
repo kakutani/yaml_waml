@@ -18,6 +18,7 @@ in ruby code ...
  require 'rubygems'
  gem 'kakutani-yaml_waml'
  ...
+ require 'yaml'
  require 'yaml_waml'
 
 === 2.1.0 <= rails w/ gem dependencies

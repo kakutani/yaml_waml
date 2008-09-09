@@ -51,7 +51,7 @@ describe YAML, ".dump" do
     actual = [["あ", "い"], {"う" => ["え"]}, Struct.new(:name).new("お")]
     io = StringIO.new
     YAML.dump(actual, io)
-    io.string.should be_eql <<-EXPECTED
+    io.string.should == <<-EXPECTED
 ---#{BLANK}
 - - "あ"
   - "い"
@@ -62,14 +62,25 @@ describe YAML, ".dump" do
     EXPECTED
   end
 
+
+  require 'fileutils'
+
+  TEST_FILEPATH = File.expand_path("to_yaml_io.txt", File.dirname(__FILE__))
+  before(:all) do
+    FileUtils.touch(TEST_FILEPATH)
+  end
+
+  after(:all) do
+    FileUtils.rm(TEST_FILEPATH)
+  end
+
   it "should be IO-friendly" do
     actual = [["や", "む"], {"る" => ["わ", "む"]}, "る"]
-    IO.popen("-", "r+") do |io|
-      if io
-        YAML.dump(actual, io)
-      else
-        yamled_str = gets
-        yamled_str.should be_eql <<-EXPECTED
+    File.open(TEST_FILEPATH, 'w') do |f|
+        YAML.dump(actual, f)
+    end
+    yamled_str = File.read(TEST_FILEPATH)
+    yamled_str.should == <<-EXPECTED
 ---#{BLANK}
 - - "や"
   - "む"
@@ -78,7 +89,5 @@ describe YAML, ".dump" do
   - "む"
 - "る"
       EXPECTED
-      end
-    end
   end
 end

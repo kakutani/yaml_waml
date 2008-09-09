@@ -69,3 +69,9 @@ you must install the following gems:
 Akira Ikeda(pinpon.ikeda at gmail.com), http://d.hatena.ne.jp/Rommy
 
 Adapted by KAKUTANI Shintaro(shintaro at kakutani.com), http://kakutani.com
+
+Thaks for pathes from followings:
+
+* OHASHI Hideya (handling StringIO), http://github.com/ohac
+* Nobuhiro IMAI (DRYied, handling IO), http://github.com/no6v
+* Keiji Yoshimi (benchmark script and some advices), http://github.com/walf443

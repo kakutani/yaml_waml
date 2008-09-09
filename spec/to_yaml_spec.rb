@@ -61,4 +61,24 @@ describe YAML, ".dump" do
   name: "お"
     EXPECTED
   end
+
+  it "should be IO-friendly" do
+    actual = [["や", "む"], {"る" => ["わ", "む"]}, "る"]
+    IO.popen("-", "r+") do |io|
+      if io
+        YAML.dump(actual, io)
+      else
+        yamled_str = gets
+        yamled_str.should be_eql <<-EXPECTED
+---#{BLANK}
+- - "や"
+  - "む"
+- "る":#{BLANK}
+  - "わ"
+  - "む"
+- "る"
+      EXPECTED
+      end
+    end
+  end
 end

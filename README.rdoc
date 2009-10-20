@@ -10,21 +10,21 @@ This Rails plugin originated by the blog entry written by Akira Ikeda.
 
 === Installing the gem manually
 
- gem sources -a http://gems.github.com
- gem install kakutani-yaml_waml
+ gem sources -a http://gemcutter.org
+ gem install yaml_waml
 
 in ruby code ...
 
  require 'rubygems'
- gem 'kakutani-yaml_waml'
+ gem 'yaml_waml'
  ...
  require 'yaml_waml'
 
 === 2.1.0 <= rails w/ gem dependencies
 
  Rails::Initializer.run do |config|
-   config.gem 'kakutani-yaml_waml', :version => '~> 0.1.1', :lib => 'yaml_waml',
-     :source => 'http://gems.github.com'
+   config.gem 'yaml_waml', :version => '~> 0.1.1',
+     :source => 'http://gemcutter.org'
  end
 
 === 2.1.0 <= rails

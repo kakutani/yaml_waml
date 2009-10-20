@@ -37,3 +37,21 @@ namespace :coverage do
     t.index_html = 'coverage/index.html'
   end
 end
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "yaml_waml"
+    gem.summary = "'to_yaml' workaround for multibyte UTF-8 string."
+    gem.description = "Plugin gem to workaround for fixing output result of 'to_yaml' method treats multibyte UTF-8 string(such as japanese) as binary. "
+    gem.has_rdoc = false
+    gem.email = "shintaro@kakutani.com"
+    gem.homepage = "http://github.com/kakutani/yaml_waml"
+    gem.authors = ["KAKUTANI Shintaro", "Akira Ikeda"]
+    gem.add_development_dependency "rspec", ">= 1.2.9"
+    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
+end
